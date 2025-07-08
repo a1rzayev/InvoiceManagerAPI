@@ -352,4 +352,48 @@ class ProductController extends Controller
             
         return response()->json($products);
     }
+
+    /**
+     * @OA\Get(
+     *     path="/api/products/expensive/list",
+     *     summary="Get expensive products",
+     *     description="Retrieve products with unit price greater than 50",
+     *     tags={"Products"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Expensive products found successfully",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Product")
+     *         )
+     *     )
+     * )
+     */
+    public function getExpensiveProducts(): JsonResponse
+    {
+        $products = Product::where('unit_price', '>', 50)->get();
+        return response()->json($products);
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/api/products/cheap/list",
+     *     summary="Get cheap products",
+     *     description="Retrieve products with unit price less than or equal to 50",
+     *     tags={"Products"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cheap products found successfully",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/Product")
+     *         )
+     *     )
+     * )
+     */
+    public function getCheapProducts(): JsonResponse
+    {
+        $products = Product::where('unit_price', '<=', 50)->get();
+        return response()->json($products);
+    }
 }
