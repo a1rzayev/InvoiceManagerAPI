@@ -15,5 +15,10 @@ class Product extends Model
         'name',
         'description',
         'unit_price'
-    ];    
+    ];
+
+    public function invoiceItems()
+    {
+        return $this->hasMany(InvoiceItem::class);
+    }
 }
