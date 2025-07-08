@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
 
+use App\Http\Controllers\Base\Controller;
+
 class InvoiceController extends Controller
 {
     public function index(Request $request): JsonResponse
