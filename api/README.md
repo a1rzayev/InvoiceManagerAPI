@@ -1,61 +1,185 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Invoice Manager API 🧾
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Hey there! 👋 Welcome to the Invoice Manager API - a powerful Laravel-based solution for managing invoices, products, and users. Think of it as your digital assistant for all things invoicing!
 
-## About Laravel
+## What's Inside? 🎁
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This API is packed with everything you need to run a smooth invoicing operation:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **👥 User Management**: Handle different user types (Admins, Sellers, Clients) with ease
+- **📦 Product Management**: Keep track of your products with smart search and filtering
+- **🧾 Invoice Management**: Create, track, and manage invoices with full status tracking
+- **📚 Interactive Documentation**: Test everything right in your browser with Swagger UI
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Quick Start 🚀
 
-## Learning Laravel
+Want to get this running on your machine? Here's how:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. **Clone and install**:
+   ```bash
+   composer install
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+2. **Set up your environment**:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. **Configure your database** in the `.env` file
 
-## Laravel Sponsors
+4. **Run the migrations**:
+   ```bash
+   php artisan migrate
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+5. **Generate the API docs**:
+   ```bash
+   php artisan l5-swagger:generate
+   ```
 
-### Premium Partners
+6. **Start the server**:
+   ```bash
+   php artisan serve
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+That's it! 🎉 Your API will be running at `http://localhost:8000`
 
-## Contributing
+## Check Out the Documentation 📖
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The best part? You can explore and test the entire API right in your browser! Just head over to:
 
-## Code of Conduct
+```
+http://localhost:8000/api/documentation
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Or simply visit `http://localhost:8000` - it'll redirect you straight to the docs!
 
-## Security Vulnerabilities
+## What Can You Do? 🤔
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Users 👥
+- Get all users: `GET /api/users`
+- Create a new user: `POST /api/users`
+- Get a specific user: `GET /api/users/{id}`
+- Update a user: `PUT /api/users/{id}`
+- Delete a user: `DELETE /api/users/{id}`
+- Get users by role: `/api/users/admins/list`, `/api/users/sellers/list`, `/api/users/clients/list`
 
-## License
+### Products 📦
+- Get all products: `GET /api/products`
+- Create a new product: `POST /api/products`
+- Get a specific product: `GET /api/products/{id}`
+- Update a product: `PUT /api/products/{id}`
+- Delete a product: `DELETE /api/products/{id}`
+- Search products: `GET /api/products/search/query`
+- Filter by price: `GET /api/products/price-range/filter`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Invoices 🧾
+- Get all invoices: `GET /api/invoices`
+- Create a new invoice: `POST /api/invoices`
+- Get a specific invoice: `GET /api/invoices/{id}`
+- Update an invoice: `PUT /api/invoices/{id}`
+- Delete an invoice: `DELETE /api/invoices/{id}`
+- Filter by status: `GET /api/invoices/status/{status}`
+- Get by seller: `GET /api/invoices/seller/{sellerId}`
+- Get by client: `GET /api/invoices/client/{clientId}`
+- Update status: `PATCH /api/invoices/{id}/status`
+
+## Data Structure 📊
+
+### User Model
+```json
+{
+  "id": "uuid",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "+1234567890",
+  "address": "123 Main St",
+  "role": "seller", // admin, seller, or client
+  "is_active": true
+}
+```
+
+### Product Model
+```json
+{
+  "id": "uuid",
+  "name": "Premium Widget",
+  "description": "The best widget money can buy",
+  "unit_price": 29.99
+}
+```
+
+### Invoice Model
+```json
+{
+  "id": "uuid",
+  "seller_id": "uuid",
+  "client_id": "uuid",
+  "status": "draft", // draft, sent, paid, overdue
+  "items": [
+    {
+      "product_id": "uuid",
+      "quantity": 2,
+      "total_price": 59.98
+    }
+  ]
+}
+```
+
+## Validation Rules 📝
+
+### Creating/Updating Users
+- **name**: Required, max 255 characters
+- **email**: Required, valid email, must be unique
+- **password**: Required, minimum 8 characters
+- **phone**: Optional, max 20 characters
+- **address**: Optional, max 500 characters
+- **role**: Required, must be admin/seller/client
+- **is_active**: Boolean (defaults to true)
+
+### Creating/Updating Products
+- **name**: Required, max 255 characters, must be unique
+- **description**: Optional, max 1000 characters
+- **unit_price**: Required, must be 0 or greater
+
+### Creating/Updating Invoices
+- **seller_id**: Required, must be a valid seller user
+- **client_id**: Required, must be a valid client user
+- **status**: Optional, defaults to "draft"
+- **items**: Required array with at least one item:
+  - **product_id**: Required, must exist
+  - **quantity**: Required, minimum 1
+  - **total_price**: Required, minimum 0
+
+## Error Handling ⚠️
+
+The API uses standard HTTP status codes to let you know what's happening:
+
+- **200** ✅ - Everything worked perfectly
+- **201** ✅ - Something new was created successfully
+- **400** ❌ - Something's wrong with your request
+- **404** ❌ - Couldn't find what you're looking for
+- **409** ❌ - Conflict (like trying to delete a product that's used in invoices)
+- **422** ❌ - Validation failed (check the error details)
+
+All error responses include a helpful message explaining what went wrong.
+
+## Need Help? 🤝
+
+If you run into any issues or have questions:
+
+1. **Check the Swagger docs** - They're interactive and you can test endpoints right there
+2. **Look at the error messages** - They're designed to be helpful
+3. **Check the logs** - Laravel keeps detailed logs in `storage/logs/`
+
+## Tech Stack 💻
+
+- **Laravel 12** - The PHP framework
+- **L5-Swagger** - For beautiful API documentation
+- **SQLite** - Simple database (you can switch to MySQL/PostgreSQL)
+- **OpenAPI 3.0** - Modern API specification
+
+---
+
+Happy coding! 🎉 If you find this useful, feel free to star the repo or contribute!
