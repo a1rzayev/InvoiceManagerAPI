@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Base;
 
+use Illuminate\Routing\Controller as BaseController;
+
 /**
  * @OA\Info(
  *     version="1.0.0",
@@ -42,7 +44,7 @@ namespace App\Http\Controllers\Base;
  *     description="Invoice management endpoints"
  * )
  */
-abstract class Controller
+abstract class Controller extends BaseController
 {
     //
 }
