@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\InvoiceStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,6 +17,21 @@ class Invoice extends Model
         'client_id',
         'status'
     ];
+
+    protected $casts = 
+    [
+        'status' => InvoiceStatus::class,
+    ];
+
+    public function setStatus(InvoiceStatus $status): void 
+    {
+        $this->status = $status;
+    }
+
+    public function getStatus(): InvoiceStatus
+    {
+        return $this->status;
+    }
 
     public function client()
     {
