@@ -138,8 +138,8 @@ class InvoiceController extends Controller
     public function store(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'seller_id' => ['required', 'exists:users,id', Rule::exists('users')->where('role', UserRole::SELLER)],
-            'client_id' => ['required', 'exists:users,id', Rule::exists('users')->where('role', UserRole::CLIENT)],
+            'seller_id' => ['required', Rule::exists('users', 'id')->where('role', UserRole::SELLER)],
+            'client_id' => ['required', Rule::exists('users', 'id')->where('role', UserRole::CLIENT)],
             'status' => ['sometimes', Rule::in(InvoiceStatus::values())],
             'items' => 'required|array|min:1',
             'items.*.product_id' => 'required|exists:products,id',
@@ -254,8 +254,8 @@ class InvoiceController extends Controller
         }
 
         $validated = $request->validate([
-            'seller_id' => ['sometimes', 'exists:users,id', Rule::exists('users')->where('role', UserRole::SELLER)],
-            'client_id' => ['sometimes', 'exists:users,id', Rule::exists('users')->where('role', UserRole::CLIENT)],
+            'seller_id' => ['sometimes', Rule::exists('users', 'id')->where('role', UserRole::SELLER)],
+            'client_id' => ['sometimes', Rule::exists('users', 'id')->where('role', UserRole::CLIENT)],
             'status' => ['sometimes', Rule::in(InvoiceStatus::values())],
             'items' => 'sometimes|array|min:1',
             'items.*.product_id' => 'required_with:items|exists:products,id',
